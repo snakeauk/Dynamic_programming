@@ -5,7 +5,7 @@
 
 int weight[N + 1]; // アイテムの重さ
 int profit[N + 1]; // アイテムの利益
-int v[N + 1];      // 選択されたアイテムの個数
+int order[N + 1];      // 選択されたアイテムの個数
 int gain[LIMIT + 1]; // 各重さにおける最大利益
 int choice[LIMIT + 1]; // 各重さにおける選択されたアイテム
 
@@ -31,12 +31,12 @@ void dynamic_programming(int limit, int n) {
 
     // 選択されたアイテムの記録
     for (j = 1; j <= n; j++) {
-        v[j] = 0;
+        order[j] = 0;
     }
     i = limit;
     while (choice[i] > 0) {
         k = choice[i];
-        v[k]++;
+        order[k]++;
         i -= weight[k];
     }
 }
@@ -62,8 +62,8 @@ int main() {
     // 結果の表示
     printf("選択されたアイテム:\n");
     for (int j = 1; j <= n; j++) {
-        if (v[j] > 0) {
-            printf("アイテム %d: %d 個\n", j, v[j]);
+        if (order[j] > 0) {
+            printf("アイテム %d: %d 個\n", j, order[j]);
         }
     }
 
